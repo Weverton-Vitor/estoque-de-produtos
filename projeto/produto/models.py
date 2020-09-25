@@ -8,7 +8,7 @@ class Produto(models.Model):
     estoque = models.IntegerField('estoque atual')
     estoque_minimo = models.PositiveIntegerField('estoque mínimo', default=0)
 
-    class meta:
+    class Meta:
         ordering = ('produto', )
 
     def __str__(self):
