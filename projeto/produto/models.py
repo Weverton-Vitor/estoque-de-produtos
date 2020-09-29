@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse_lazy
+
 
 class Produto(models.Model):
     importado = models.BooleanField(default=False)
@@ -13,3 +15,6 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.produto
+
+    def get_absolute_url(self):
+        return reverse_lazy('produto:produto_detail', kwargs={'pk':self.pk})
