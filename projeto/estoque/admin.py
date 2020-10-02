@@ -8,7 +8,7 @@ class EstoqueitensInline(admin.TabularInline):
 @admin.register(Estoque)
 class EstoqueAdmin(admin.ModelAdmin):
     inlines = (EstoqueitensInline,)
-    list_display = ('__str__', 'nf')
+    list_display = ('__str__', 'nf', 'funcionario')
     search_fields = ('nr', )
     list_filter = ('funcionario', )
     date_hierarchy = 'created'
