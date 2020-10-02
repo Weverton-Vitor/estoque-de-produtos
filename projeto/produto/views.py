@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from .models import Produto
 from .forms import ProdutoForm
 
@@ -24,7 +24,6 @@ def produto_add(request):
     return render(request, template_name)
 
 class ProdutoCreate(CreateView):
-    # Create view
     model = Produto
     template_name = 'produto_form.html'
     form_class =  ProdutoForm
@@ -32,3 +31,9 @@ class ProdutoCreate(CreateView):
     # Setando a url de sucesso para a página de detalhe do objeto
     def get_success_url(self):
         return self.object.get_absolute_url()
+
+
+class ProdutoUpdate(UpdateView):
+    model = Produto
+    template_name = 'produto_form.html'
+    form_class = ProdutoForm
