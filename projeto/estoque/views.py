@@ -34,7 +34,7 @@ def dar_baixa_estoque(form):
 
 def estoque_entrada_add(request):
     template_name = 'estoque_entrada_form.html'
-    estoque_form = EstoqueEntrada()
+    estoque_form = Estoque()
     item_estoque_formset = inlineformset_factory(
         EstoqueEntrada,
         EstoqueItens,
@@ -71,6 +71,7 @@ def estoque_entrada_add(request):
     context = {'form': form, 'formset': formset}
     return render(request, template_name, context)
 
+
 def estoque_saida_list(request):
     template_name = 'estoque_saida_list.html'
     objects = EstoqueSaida.objects.all()
@@ -79,4 +80,9 @@ def estoque_saida_list(request):
     return render(request, template_name, context)
 
 
+def estoque_saida_detail(request, pk):
+    template_name = 'estoque_saida_detail.html'
+    obj = EstoqueSaida.objects.get(pk=pk)
+    context = {'object': obj}
 
+    return render(request, template_name, context)
