@@ -8,9 +8,13 @@ from .models import Estoque, EstoqueItens, EstoqueSaida, EstoqueEntrada
 
 # Estoque de entrada
 def estoque_entrada_list(request):
-    template_name = 'estoque_entrada_list.html'
+    template_name = 'estoque_list.html'
     objects = EstoqueEntrada.objects.all()
-    context = {'object_list': objects}
+    context = {
+        'object_list': objects,
+        'titulo': 'Entrada',
+        'url_add': 'estoque:estoque_entrada_add'
+    }
 
     return render(request, template_name, context)
 
@@ -62,7 +66,7 @@ def estoque_add(request, template_name, movimento, url):
             form.movimento = movimento
             form.save()
             formset.save()
-            dar_baixa_estoque(form)            
+            dar_baixa_estoque(form)
             return {'pk': form.pk}
 
     else:
@@ -78,19 +82,21 @@ def estoque_entrada_add(request):
     movimento = 'e'
     url = 'estoque:estoque_entrada_detail'
     context = estoque_add(request, template_name, movimento, url)
-    if context.get('pk'):            
+    if context.get('pk'):
         return HttpResponseRedirect(resolve_url(url, context.get('pk')))
-        
-    return render(request, template_name, context)
 
-    
+    return render(request, template_name, context)
 
 
 # Estoque de Saida
 def estoque_saida_list(request):
-    template_name = 'estoque_saida_list.html'
+    template_name = 'estoque_list.html'
     objects = EstoqueSaida.objects.all()
-    context = {'object_list': objects}
+    context = {
+        'object_list': objects,
+        'titulo': 'Saída',
+        'url_add': 'estoque:estoque_saida_add'
+    }
 
     return render(request, template_name, context)
 
@@ -107,7 +113,7 @@ def estoque_saida_add(request):
     template_name = 'estoque_saida_form.html'
     movimento = 's'
     url = 'estoque:estoque_saida_detail'
-    context = estoque_add(request, template_name, movimento, url)    
-    if context.get('pk'):        
+    context = estoque_add(request, template_name, movimento, url)
+    if context.get('pk'):
         return HttpResponseRedirect(resolve_url(url, context.get('pk')))
     return render(request, template_name, context)
