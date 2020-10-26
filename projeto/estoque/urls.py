@@ -7,12 +7,11 @@ app_name = 'estoque'
 urlpatterns = [
     # Estoque de entrada
     path('', v.EstoqueEntradaList.as_view(), name='estoque_entrada_list'),
-    path('<int:pk>/', v.EstoqueEntradaDetail.as_view(), name='estoque_entrada_detail'),
+    path('<int:pk>/', v.EstoqueDetail.as_view(), name='estoque_detail'),
     path('add/', v.estoque_entrada_add, name='estoque_entrada_add'),
 
     # Estoque de Saida
     path('saida', v.EstoqueSaidaList.as_view(), name='estoque_saida_list'),
-    path('saida/<int:pk>/', v.EstoqueSaidaDetail.as_view(), name='estoque_saida_detail'),
     path('saida/add/', v.estoque_saida_add, name='estoque_saida_add'),
 
 ]
