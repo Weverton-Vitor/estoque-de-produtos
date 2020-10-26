@@ -50,8 +50,6 @@ class EstoqueDetail(DetailView):
     template_name = 'estoque_detail.html'
 
 
-
-
 def dar_baixa_estoque(form):
     "Pega os produtos a partir da instância do fomulário(Estoque)"
     produtos = form.estoques.all()
