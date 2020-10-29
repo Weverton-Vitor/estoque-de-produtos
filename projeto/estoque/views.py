@@ -101,6 +101,7 @@ def estoque_add(request, template_name, movimento, url):
     context = {'form': form, 'formset': formset}
     return context
 
+
 @login_required
 def estoque_entrada_add(request):
     template_name = 'estoque_entrada_form.html'
@@ -147,6 +148,7 @@ def estoque_saida_detail(request, pk):
     }
 
     return render(request, template_name, context)
+
 
 @login_required
 def estoque_saida_add(request):
