@@ -14,3 +14,4 @@ class EstoqueItensForm(forms.ModelForm):
     class Meta:
         model = EstoqueItens
         fields = '__all__'
+        exclude = ['saldo']

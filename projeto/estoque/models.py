@@ -57,10 +57,18 @@ class EstoqueItens(models.Model):
 
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
     quantidade = models.PositiveIntegerField()
-    saldo = models.PositiveIntegerField()
+    saldo = models.PositiveIntegerField(blank=True)
 
     class Meta:
         ordering = ('pk',)
 
     def __str__(self):
         return '{} - {} - {}'.format(self.pk, self.estoque.pk, self.produto)
+
+    def save(self,  *args, **kwargs):
+        if self.estoque.movimento == 's':
+            self.saldo = self.produto.estoque - self.quantidade            
+        else:                        
+            self.saldo = self.produto.estoque + self.quantidade                        
+            
+        super().save( *args, **kwargs)

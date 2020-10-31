@@ -83,7 +83,7 @@ def estoque_add(request, template_name, movimento, url):
             request.POST,
             instance=estoque_form,
             prefix='estoque'
-        )
+        )        
 
         if form.is_valid() and formset.is_valid():
             form = form.save(commit=False)

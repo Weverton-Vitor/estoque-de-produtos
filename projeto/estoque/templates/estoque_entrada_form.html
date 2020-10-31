@@ -50,10 +50,10 @@
                 <div class="col-sm-12">
                     <legend style="border-bottom: 1px solid #e5e5e5;">Produtos</legend>
                     <div id="estoque" class="form-inline">
-                        {% for item_estoque_form in formset %}
+                        {% for item_estoque_form in formset %}                        
                         <div id="item-{{ forloop.counter0 }}" class="form-group">
                             {{ item_estoque_form|bootstrap }}
-                        </div>
+                        </div>                        
                         {% endfor %}
                     </div>
                 </div>
@@ -88,9 +88,11 @@
 <script src="{% static 'js/estoque_entrada.js' %}"></script>
 
 <script type="text/html" id="item-estoque">
-    <div id="item-__prefix__" class="form-group">
+    <!-- Adicionando um formulário vazio -->
+    <div id="item-__prefix__" class="form-group" display='none'>
         {{ formset.empty_form|bootstrap }}
     </div>
+    
 </script>
-
+<p id='saldo' style="margin:10px; margin-right:15px;" hidden>Saldo <span>0</span></p>
 {% endblock js %}
