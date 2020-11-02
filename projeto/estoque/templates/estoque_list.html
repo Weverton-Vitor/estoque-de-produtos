@@ -35,6 +35,9 @@
         {% endfor %}
     </tbody>
 </table>
+
+{% include "includes/pagination.html" %}
+
 {% else %}
 <p class="alert alert-warning"> Sem itens na lista</p>
 {% endif %}
